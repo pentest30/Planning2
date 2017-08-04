@@ -1,0 +1,137 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:Planing.Converters"
+             xmlns:helpers1="clr-namespace:Planing.UI.Helpers"
+            Loaded="GenePlan_OnLoaded"
+             xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduler"
+             x:Class="Planing.Views.GenePlan"
+             mc:Ignorable="d" 
+             >
+    <UserControl.Resources>
+        <converters:Visible2Enable x:Key="Visible2Enable"/>
+        <converters:Visible2NDisable x:Key="Visible2Disable"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="25                                                        "/>
+        </Grid.RowDefinitions>
+        <GroupBox  BorderBrush="Gray" Margin="5" Header="Filtrer:">
+            <Grid DataContext="{Binding SelectedItem, ElementName=DataGrid}" x:Name="Grid" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+
+                </Grid.RowDefinitions>
+
+
+
+                <TextBlock VerticalAlignment="Center" Text="Faculté:" Grid.Row="0" Grid.Column="0" />
+                <TextBox Margin="2" x:Name="SemestreTxt"  Height="25"  helpers1:TextBoxMaskBehavior.Mask="Integer"  Grid.Column="3" Grid.Row="0"/>
+                <ComboBox x:Name="CbCategorie" 
+                          Height="25"
+					Grid.Column="1" 
+					Grid.Row="0" 
+					Margin="2"
+					DisplayMemberPath="Libelle"
+					SelectedValue="{Binding FaculteId}" 
+					SelectedValuePath="Id"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Année scolaire:"/>
+                <ComboBox x:Name="CbAs" 
+                           Height="25"
+					Grid.Column="1" 
+					Grid.Row="1" 
+					Margin="2"
+					DisplayMemberPath="Name"
+					SelectedValue="{Binding AnneeScoliareId}" 
+					SelectedValuePath="Id"/>
+                <TextBlock VerticalAlignment="Center" Grid.Column="2" Grid.Row="0" Text="Semestre: "/>
+
+
+
+
+            </Grid>
+        </GroupBox>
+        <Grid Grid.Row="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+               
+                <Label VerticalAlignment="Center">Current fitness:</Label>
+                <TextBlock VerticalAlignment="Center" Width="150" Name="TextBlock"></TextBlock>
+
+                <ProgressBar Name="ProgressBar" Width="350" Margin="5"/>
+                <Button Height="35" Content="Generate" Name="GenBtn" Margin="3" Click="GenBtn_OnClick"></Button>
+                <Button Content="Stop" Margin="3" Name="btnStop" Click="BtnStop_OnClick"></Button>
+            </StackPanel>
+            <dxsch:SchedulerControl Grid.Row="1" x:Name="Scheduler" ActiveViewType="FullWeek" VerticalAlignment="Stretch" SnapsToDevicePixels="False" GroupType="None" Drop="Scheduler_Drop">
+                <dxsch:SchedulerControl.Storage>
+                    <dxsch:SchedulerStorage>
+                        <dxsch:SchedulerStorage.AppointmentStorage>
+
+                            <dxsch:AppointmentStorage DataSource="{Binding}">
+                                <dxsch:AppointmentStorage.Mappings>
+                                    <dxsch:AppointmentMapping Start="StartTime"
+                                        End="EndTime"
+                                        Subject="Subject"
+                                        AllDay="AllDay"
+                                        Description="Description"
+                                        Label="Label"
+                                        Location="Location"
+                                        RecurrenceInfo="RecurrenceInfo"
+                                        ReminderInfo="ReminderInfo"
+                                        ResourceId="OwnerId"
+                                        Status="Status"
+                                        Type="EventType"
+                                    />
+                                </dxsch:AppointmentStorage.Mappings>
+                            </dxsch:AppointmentStorage>
+                        </dxsch:SchedulerStorage.AppointmentStorage>
+                        <dxsch:SchedulerStorage.ResourceStorage>
+                            <dxsch:ResourceStorage DataContext="{Binding}">
+                                <dxsch:ResourceStorage.Mappings>
+                                    <dxsch:ResourceMapping Id="Id"
+									Caption="Name"
+                                    />
+                                </dxsch:ResourceStorage.Mappings>
+                            </dxsch:ResourceStorage>
+                        </dxsch:SchedulerStorage.ResourceStorage>
+                    </dxsch:SchedulerStorage>
+                </dxsch:SchedulerControl.Storage>
+                <dxsch:SchedulerControl.DayView>
+                    <dxsch:DayView ResourcesPerPage="3" />
+                </dxsch:SchedulerControl.DayView>
+                <dxsch:SchedulerControl.WorkWeekView>
+                    <dxsch:WorkWeekView ResourcesPerPage="3" />
+                </dxsch:SchedulerControl.WorkWeekView>
+                <dxsch:SchedulerControl.WeekView>
+                    <dxsch:WeekView ResourcesPerPage="3" Enabled="False" />
+                </dxsch:SchedulerControl.WeekView>
+                <dxsch:SchedulerControl.FullWeekView>
+                    <dxsch:FullWeekView ResourcesPerPage="3" Enabled="True"/>
+                </dxsch:SchedulerControl.FullWeekView>
+                <dxsch:SchedulerControl.MonthView>
+                    <dxsch:MonthView ResourcesPerPage="3" />
+                </dxsch:SchedulerControl.MonthView>
+                <dxsch:SchedulerControl.TimelineView>
+                    <dxsch:TimelineView ResourcesPerPage="3" />
+                </dxsch:SchedulerControl.TimelineView>
+            </dxsch:SchedulerControl>
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Planing.Views.PramCtr"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:helpers="clr-namespace:Planing.UI.Helpers"
+             mc:Ignorable="d" 
+           >
+    <DockPanel Margin="10">
+        <GroupBox DockPanel.Dock="Top" Margin="20" Header="Paramétrage des algorithmes d'optimisations:">
+            <Grid Name="Grid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label>Hill climbing time span:</Label>
+                <TextBox Text="{Binding TimeSpan}" Grid.Row="0" Grid.Column="1" helpers:TextBoxMaskBehavior.Mask="Integer"></TextBox>
+                <Label Grid.Row="0" Grid.Column="2">Sumilated annealing temprature:</Label>
+                <TextBox Text="{Binding Temprature}" Grid.Row="0" Grid.Column="3" helpers:TextBoxMaskBehavior.Mask="Integer"></TextBox>
+
+                <Label Grid.Row="1" Grid.Column="0">Succession des cours bonus:</Label>
+                <TextBox Text="{Binding SoftCourseSuccessingBonus}" Grid.Row="1" Grid.Column="1" helpers:TextBoxMaskBehavior.Mask="Integer"></TextBox>
+                <Label Grid.Row="1" Grid.Column="2">Succession des cours penalty:</Label>
+                <TextBox Text="{Binding SoftCourseSuccessingPenalty}" Grid.Row="1" Grid.Column="3" helpers:TextBoxMaskBehavior.Mask="Integer"></TextBox>
+
+                <Label Grid.Row="2" Grid.Column="0">Unavailable rooms bonus:</Label>
+                <TextBox Text="{Binding SoftUnAvailableRoomBonus}" Grid.Row="2" Grid.Column="1" helpers:TextBoxMaskBehavior.Mask="Integer"></TextBox>
+                <Label Grid.Row="2" Grid.Column="2">Unavailable rooms penalty:</Label>
+                <TextBox Text="{Binding SoftUnAvailableRoomPenalty}" Grid.Row="2" Grid.Column="3" helpers:TextBoxMaskBehavior.Mask="Integer"></TextBox>
+
+                <Label Grid.Row="3" Grid.Column="0">Unavailable teacher bonus:</Label>
+                <TextBox Text="{Binding SoftUnAvailableTeacherBonus}" Grid.Row="3" Grid.Column="1" helpers:TextBoxMaskBehavior.Mask="Integer"></TextBox>
+                <Label Grid.Row="3" Grid.Column="2">Unavailable teacher penalty:</Label>
+                <TextBox Text="{Binding SoftUnAvailableTeacherPenalty}" Grid.Row="3" Grid.Column="3" helpers:TextBoxMaskBehavior.Mask="Integer"></TextBox>
+
+                <Label Grid.Row="4" Grid.Column="0">Shrink planning bonus:</Label>
+                <TextBox Text="{Binding SoftLastPeriodeBonus}" Grid.Row="4" Grid.Column="1" helpers:TextBoxMaskBehavior.Mask="Integer"></TextBox>
+                <Label Grid.Row="4" Grid.Column="2">Shrink Planning penalty:</Label>
+                <TextBox Text="{Binding SoftLastPeriodPenalty}" Grid.Row="4" Grid.Column="3" helpers:TextBoxMaskBehavior.Mask="Integer"></TextBox>
+            </Grid>
+        </GroupBox>
+        <Grid DockPanel.Dock="Bottom" Margin="20">
+            <StackPanel>
+                <Button Name="BtnSave" Click="BtnSave_OnClick" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right">Enregistrer</Button>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</UserControl>
