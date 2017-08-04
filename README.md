@@ -3,4 +3,8 @@ a small software for generating school timetable. it uses two algorithms. one fo
 
 requirements : .Net 4.5, ReportViewer engine.
 
-Planning2/ConsoleApplication1/aliphia-screen-ar-1.png
+![](https://github.com/pentest30/Planning2/blob/master/ConsoleApplication1/2.png)
+![](https://github.com/pentest30/Planning2/blob/master/ConsoleApplication1/3.png)
+![](https://github.com/pentest30/Planning2/blob/master/ConsoleApplication1/4.png)
+![](https://github.com/pentest30/Planning2/blob/master/ConsoleApplication1/5.png)
+![](https://github.com/pentest30/Planning2/blob/master/ConsoleApplication1/aliphia-screen-ar-1.png)
